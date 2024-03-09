@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ChepotievModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="IDCategory" />
+    </Key>
+    <Property Name="IDCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Categoryes" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Flowers">
+    <Key>
+      <PropertyRef Name="IDFlowers" />
+    </Key>
+    <Property Name="IDFlowers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameFlower" Type="varchar" MaxLength="50" />
+    <Property Name="DescriptionFlower" Type="text" />
+    <Property Name="Image" Type="varchar" MaxLength="50" />
+    <Property Name="IDCategory" Type="int" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="IDUserRole" />
+    </Key>
+    <Property Name="IDUserRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRoles" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="IDUserRole" Type="int" />
+  </EntityType>
+  <Association Name="FK_Flowers_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Flowers" Type="Self.Flowers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="IDCategory" />
+      </Principal>
+      <Dependent Role="Flowers">
+        <PropertyRef Name="IDCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserRole">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="IDUserRole" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="IDUserRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ChepotievModelContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Flowers" EntityType="Self.Flowers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Flowers_Category" Association="Self.FK_Flowers_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Flowers" EntitySet="Flowers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserRole" Association="Self.FK_Users_UserRole">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
