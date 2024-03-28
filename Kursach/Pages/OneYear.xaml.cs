@@ -58,16 +58,16 @@ namespace Kursach.Pages
             Classes.ClassFrame.frmObj.Navigate(new Pages.Authorization());
         }
 
-        private void AddExercise_Click(object sender, RoutedEventArgs e)
+        private void AddFlowers_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddFlowers(null));
+                NavigationService.Navigate(new AddFlowers(null));
         }
 
-        private void DeleteExercise_Click(object sender, RoutedEventArgs e)
+        private void DeleteFlowers_Click(object sender, RoutedEventArgs e)
         {
             var studentsForRemoving = lvHead.SelectedItems.Cast<Flowers>().ToList();
 
-            if (MessageBox.Show($"Удалить {studentsForRemoving.Count()} " + $"упражнение?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Удалить {studentsForRemoving.Count()} " + $"цветок?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 try
                 {
                     ChepotievEntities.GetContext().Flowers.RemoveRange(studentsForRemoving);
@@ -92,6 +92,9 @@ namespace Kursach.Pages
             lvHead.ItemsSource = ChepotievEntities.GetContext().Flowers.Where(x => x.NameFlower.Contains(search) && x.IDCategory == 1).ToList();
         }
 
-        
+        private void AddIzmFlowers_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddFlowers(lvHead.SelectedItem as Flowers));
+        }
     }
 }

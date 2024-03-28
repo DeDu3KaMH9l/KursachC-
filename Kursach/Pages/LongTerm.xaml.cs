@@ -39,16 +39,16 @@ namespace Kursach.Pages
             lvHead.ItemsSource = ChepotievEntities.GetContext().Flowers.Where(x => x.NameFlower.Contains(search) && x.IDCategory == 3).ToList();
         }
 
-        private void AddExercise_Click(object sender, RoutedEventArgs e)
+        private void AddFlowers_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddFlowers(null));
+                NavigationService.Navigate(new AddFlowers(null));
         }
 
-        private void DeleteExercise_Click(object sender, RoutedEventArgs e)
+        private void DeleteFlowers_Click(object sender, RoutedEventArgs e)
         {
             var studentsForRemoving = lvHead.SelectedItems.Cast<Flowers>().ToList();
 
-            if (MessageBox.Show($"Удалить {studentsForRemoving.Count()} " + $"упражнение?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Удалить {studentsForRemoving.Count()} " + $"цветы?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 try
                 {
                     ChepotievEntities.GetContext().Flowers.RemoveRange(studentsForRemoving);
@@ -90,6 +90,11 @@ namespace Kursach.Pages
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             Classes.ClassFrame.frmObj.Navigate(new Pages.Authorization());
+        }
+
+        private void AddIzmFlowers_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddFlowers(lvHead.SelectedItem as Flowers));
         }
     }
 }

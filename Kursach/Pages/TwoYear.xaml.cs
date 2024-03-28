@@ -40,12 +40,12 @@ namespace Kursach.Pages
             lvHead.ItemsSource = ChepotievEntities.GetContext().Flowers.Where(x => x.NameFlower.Contains(search) && x.IDCategory == 2).ToList();
         }
 
-        private void AddExercise_Click(object sender, RoutedEventArgs e)
+        private void AddFlowers_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddFlowers(null));
+                NavigationService.Navigate(new AddFlowers(null));
         }
 
-        private void DeleteExercise_Click(object sender, RoutedEventArgs e)
+        private void DeleteFlowers_Click(object sender, RoutedEventArgs e)
         {
             var studentsForRemoving = lvHead.SelectedItems.Cast<Flowers>().ToList();
 
@@ -91,6 +91,11 @@ namespace Kursach.Pages
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             Classes.ClassFrame.frmObj.Navigate(new Pages.Authorization());
+        }
+
+        private void AddIzmFlowers_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddFlowers(lvHead.SelectedItem as Flowers));
         }
     }
 }

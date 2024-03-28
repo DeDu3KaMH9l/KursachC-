@@ -11,31 +11,31 @@
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="310">
-                <TextBlock Text="Название упражнения"
+                <TextBlock Text="Название цветков"
                            Margin="5" Width="135"/>
                 <TextBox Name="NameExercise"
                          Width="150" Height="30" Margin="5"
-                         Text="{Binding NameExercise}"/>
+                         Text="{Binding NameFlower}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="310">
-                <TextBlock Text="Описание упражнения"
+                <TextBlock Text="Описание цветков"
                     Margin="5" Width="135"/>
                 <TextBox x:Name="Txt"
                     Width="150" Height="30" Margin="5"
-                    Text="{Binding ExerciseDescription}"/>
+                    Text="{Binding DescriptionFlower}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="310">
-                <TextBlock Text="Категория упражнений" Margin="5" Width="135"/>
+                <TextBlock Text="Категория цветов" Margin="5" Width="135"/>
                 <ComboBox Name="CmbCategory" Width="150" Height="30" Margin="5" SelectedValue="{Binding IDCategory}"/>
             </StackPanel>
         </StackPanel>
         <Button Name="BtnSave"
-                    Margin="325,303,325,117"
+                    Margin="325,332,325,88"
                     Height="30" Width="150"
                     Content="Сохранить"
                     Click="BtnSave_Click"/>
         <Button Name="BtnBack"
-                    Margin="325,338,325,82"
+                    Margin="325,377,325,43"
                     Height="30" Width="150"
                     Content="Назад"
                     Click="BtnBack_Click"/>

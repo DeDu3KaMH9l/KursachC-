@@ -1,4 +1,5 @@
 ﻿using Kursach.Classes;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Kursach.Pages
 {
@@ -25,26 +27,40 @@ namespace Kursach.Pages
         public AddFlowers(Flowers flow)
         {
             InitializeComponent();
-            if (flow != null) flowers = flow;
+            
             CmbCategory.ItemsSource = ChepotievEntities.GetContext().Category.ToList();
             CmbCategory.SelectedValuePath = "IDCategory";
             CmbCategory.DisplayMemberPath = "Categoryes";
 
+            if (flow != null)
+                flowers = flow;
             DataContext = flowers;
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (flowers.IDFlowers == 0)
-                ChepotievEntities.GetContext().
-                    Flowers.Add(flowers);
             try
             {
-                ChepotievEntities.GetContext().SaveChanges();
-                MessageBox.Show("Изменения успешно сохранены");
+                var dbContext = ChepotievEntities.GetContext();
+
+                if (flowers.IDFlowers == 0)
+                {
+                    dbContext.Flowers.Add(flowers);
+                }
+                else
+                {
+                    var existingDelivery = dbContext.Flowers.Find(flowers.IDFlowers);
+                    if (existingDelivery != null)
+                    {
+                        dbContext.Entry(existingDelivery).CurrentValues.SetValues(flowers);
+                    }
+                }
+
+                dbContext.SaveChanges();
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message, "Notification", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

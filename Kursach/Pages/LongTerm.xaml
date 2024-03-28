@@ -20,9 +20,11 @@
         <StackPanel Name="StPanel" Orientation="Vertical" Grid.Column="0" Grid.Row="1">
             <TextBlock Text="Поиск по цветам:" FontSize="18" Margin="5" HorizontalAlignment="Center"/>
             <TextBox Name="TxtSearch" Height="35" Width="216" TextChanged="TxtSearch_TextChanged"/>
-            <Button Content="Добавить цветы" Click="AddExercise_Click"
+            <Button Content="Добавить цветы" Click="AddFlowers_Click"
                 FontSize="14" Height="34" Background="#392467" Width="210" />
-            <Button Content="Удалить цветок" Click="DeleteExercise_Click"
+            <Button Content="Изменить цветы" Click="AddIzmFlowers_Click"
+                FontSize="14" Height="34" Background="#392467" Width="210" />
+            <Button Content="Удалить цветок" Click="DeleteFlowers_Click"
                 FontSize="14" Height="34" Background="#392467" Width="210" />
         </StackPanel>
         <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="1" Background="#392467"
