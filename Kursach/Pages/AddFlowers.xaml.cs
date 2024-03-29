@@ -56,6 +56,7 @@ namespace Kursach.Pages
                 }
 
                 dbContext.SaveChanges();
+                MessageBox.Show("Изменения успешно сохранены");
 
             }
             catch (Exception ex)

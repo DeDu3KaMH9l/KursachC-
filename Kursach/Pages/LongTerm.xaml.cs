@@ -48,7 +48,7 @@ namespace Kursach.Pages
         {
             var studentsForRemoving = lvHead.SelectedItems.Cast<Flowers>().ToList();
 
-            if (MessageBox.Show($"Удалить {studentsForRemoving.Count()} " + $"цветы?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Удалить {studentsForRemoving.Count()} " + $"цветок?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 try
                 {
                     ChepotievEntities.GetContext().Flowers.RemoveRange(studentsForRemoving);
